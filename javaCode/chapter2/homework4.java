@@ -1,0 +1,4 @@
+//环境变量path配置及其作用
+为了在dos的任意目录下都能使用java和javac命令
+1.在环境变量中增加一个JAVA_HOME,值为JDK安装的主目录
+2.然后在path变量中新增一个%JAVA_HOME%\bin
