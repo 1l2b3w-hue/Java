@@ -41,10 +41,11 @@ public class exercise02 {
 		// int num = 0;
 		// while(true) {
 		// 	if(cash > 50000) {
-		// 		cash =cash - (cash * 0.05);
+		// 		// cash =cash - (cash * 0.05);
+		// 		cash *= 0.95; //¿ÉÒÔ×ª»»
 		// 		num++;
 		// 	}
-		// 	else if(cash <= 50000) {
+		// 	else {
 		// 		if(cash >= 1000) {
 		// 			cash -= 1000;
 		// 			num++;
@@ -109,20 +110,24 @@ public class exercise02 {
 		// 	if( i % 5 != 0) {
 		// 		System.out.print(i+ "\t");
 		// 		num++;
-		// 	}
-		// 	if(num == 5) {
+		// 		if(num % 5 == 0) {
 		// 		System.out.println();
-		// 		num = 0;
+		// 		// num = 0;
+		// 		}
 		// 	}
+		// 	// if(num  == 5) {
+		// 	// 	System.out.println();
+		// 	// 	num = 0;
+		// 	// }
 		// }
 
 		// 7.
-		// for(int i = 97; i < 123; i++) {
-		// 	System.out.print((char)i);
+		// for(char i = 'a'; i <= 'z'; i++) {
+		// 	System.out.print(i + "");
 		// }
 		// System.out.println();
-		// for(int i = 90 ; i >= 65; i--) {
-		// 	System.out.print((char)i);
+		// for(char i = 'Z' ; i >= 'A'; i--) {
+		// 	System.out.print(i + "");
 		// }
 
 		//8.
@@ -132,15 +137,21 @@ public class exercise02 {
 		// 	sum = sum + flag * 1.0 / i;
 		// 	flag = -flag;
 		// }
+		// for(int i = 1; i <= 100; i++) {
+		// 	if(i % 2 == 0) {
+		// 		sum -= 1.0 / i;
+		// 	}
+		// 	else {
+		// 		sum += 1.0 / i;
+		// 	}
+		// }
 		// System.out.println(sum);
 
 		// 9.
 		int sum1 = 0;
 		int sum2 = 0;
 		for(int i = 1; i <= 100; i++) {
-			for(int j = i; j <= i; j++){
-				sum2 += j;
-			}
+			sum2 += i;
 			sum1 += sum2;
 		} 
 		System.out.println(sum1);
