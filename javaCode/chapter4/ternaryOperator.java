@@ -14,6 +14,8 @@ public class ternaryOperator {
 		int a = 3;
 		int b = 8;
 		int c = a > b ? a : b;
+		int u = 1000000;
+		System.out.println(u);
 		// int c  = a > b ? (int)1.1 : (int)3.4;
 		// double d  = a > b ? a : b + 3; //×Ô¶¯×ª»»
 		// if(a > b) {

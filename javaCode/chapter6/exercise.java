@@ -66,7 +66,48 @@ public class exercise {
 		// System.out.println(c);//十六进制
 
 		//4.
+		// String s1 = "10101";
+		// String s2 = "37";
+		// String s3 = "AA";
+		// int k = 1;
+		// int sum = 0 ;
+		// for(int i = s1.length() - 1; i >= 0; i--) {
+		// 	sum +=((s1.charAt(i) - 48) * k);
+		// 	k *= 2;
+		// }
+		// System.out.println("二进制：" + s1 + " 转换为十进制为 ：" + sum);
+		// k = 1;
+		// sum = 0;
+		// for(int i = s2.length() - 1; i >= 0; i--) {
+		// 	sum += ((s2.charAt(i) - 48) * k);
+		// 	k *= 8;
+		// }
+		// System.out.println("八进制：" + s2 + " 转换为十进制为 ：" + sum);
+		// k = 1;
+		// sum = 0;
+		// for(int i = s3.length() - 1; i >= 0; i--) {
+		// 	System.out.println(s3.charAt(i));
+		// 	switch(s3.charAt(i)) {
+		// 		case 'A' :	sum += 10 * k;
+		// 			break;
+		// 		case 'B' : 	sum += 11 * k;
+		// 			break;
+		// 		case 'C' : 	sum += 12 * k;
+		// 			break;
+		// 		case 'D' :	sum += 13 * k;
+		// 			break;
+		// 		case 'E' :	sum += 14 * k;
+		// 			break;
+		// 		case 'F' :	sum += 15 * k;
+		// 			break;
+		// 		default :
+		// 			sum += ((s3.charAt(i) - 48) * k);
 
+		// 	}
+		// 	k *= 16;
+		// 	System.out.println(sum);
+		// }
+		// System.out.println("十六进制：" + s3 + " 转换为十进制为 ：" + sum);
 
 		//5.
 		// Scanner sc = new Scanner(System.in);
