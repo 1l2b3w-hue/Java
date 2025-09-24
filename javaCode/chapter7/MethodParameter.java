@@ -3,7 +3,7 @@ public class MethodParameter {
 	public static void main(String[] args) {
 		int a = 10;
 		int b = 20;
-		Change change = new Change();
+		Change change = new Change() ;
 		change.swipe(a,b);
 		System.out.println("main ÖÐµÄa = " + a + " b = " + b);
 	}
