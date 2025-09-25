@@ -25,6 +25,6 @@ class HspMethod {
 	}
 
 	public void f2( String a,double... nums){
-
+		// ²»ÄÜ £º double... nums,String a
 	}
 }
