@@ -12,15 +12,33 @@ public class Encapsulation01 {
         p1.setAge(33);
         p1.setSalary(4500);
 //        p1.info();
-        System.out.println( p1.getSalary());
+//        System.out.println( p1.getSalary());
 
+//        直接使用构造器来实现对象属性的设置
+        Person p2 = new Person("smith",23,5000);
+        System.out.println("smith的信息");
+        p2.info();
+//       存在可以直接设置对象属性，无法实现信息的验证
     }
 }
 class Person {
     public String name;
     private int age;
     private double salary;
-    private String job;
+
+    public Person() {
+    }
+
+    public Person( String name, int age,double salary) {
+//        this.salary = salary;
+//        this.name = name;
+//        this.age = age;
+//        可以通过在构造函数中使用set方法来实现验证，
+        setName(name);
+        setAge(age);
+        setSalary(salary);
+    }
+
     public void setName(String name) {
         if(name.length() >= 2 && name.length() <= 6) {
             this.name = name;

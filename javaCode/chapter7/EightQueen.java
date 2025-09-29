@@ -1,18 +1,46 @@
 public class EightQueen {
 
 	public static void main(String[] args) {
-		// 第一个皇后先放第一行第一列
-		// 2）第二个皇后放在第二行第一列、然后判断是否OK，如果不OK，继
-		// 续放在第二列、第三列、依次把所有列都放完，找到一个合适
-		// 3）继续第三个皇后，还是第一列、第二列....直到第8个皇后也能放
-		// 在一个不冲突的位置，算是找到了一个正确解
-		// 4）当得到一个正确解时，在栈回退到上一个栈时，就会开始回溯，即
-		// 将第一个皇后，放到第一列的所有正确解，全部得到.
-		// 5）然后回头继续第一个皇后放第二列，后面继续循环执行1，2,3，4的 步骤
-		// 说明：理论上应该创建一个二维数组来表示棋盘，但是实际上可以通
-		// 过算法，用一个一维数组即可解决问题.arr[8]={0，4,7，5，2,6，1，
-		// 3}对应arr下标表示第几行，即第几个皇后，arr[i]=val，val表
-		// 示第i+1个皇后，放在第i+1行的第val+1列
+
+		int[][] chessBoard = new int[8][8];
+		int queenNum = 0;
+		Queen queen = new Queen();
+		queen.printBoard(chessBoard);
+		queen.putQueen(chessBoard,3,6,queenNum);
+		queen.printBoard(chessBoard);
 	}
 }
-class 
+
+class Queen {
+// 0 表示可以放皇后， 1 表示不能放皇后， 8 表示皇后的位置
+	public void printBoard(int[][] arr) {
+		System.out.println("------------棋盘如下-------------");
+		for(int i  = 0; i < arr.length; i++) {
+			for(int j = 0; j < arr[i].length; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+	public void putQueen(int[][] arr, int n, int m,int k) {
+		// 放皇后，决定不能存放的位置
+		if(arr[n][m] != 1) {
+			for(int i  = 0; i < arr.length; i++) {
+				arr[i][m] = 1;
+				for(int j = 0; j < arr[i].length; j++) {
+					arr[n][j] = 1;
+					if(j - m == i - n || j + i == n + m) {
+						arr[i][j] = 1;
+					}
+				}
+			}
+			arr[n][m] = 8;
+		
+		}
+		else {
+			
+		}
+		
+		
+	}
+}
