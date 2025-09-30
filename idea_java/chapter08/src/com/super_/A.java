@@ -1,6 +1,6 @@
 package com.super_;
 
-public class A {
+public class A extends Base{
     public int n1 = 100;
     protected int n2 = 200;
     int n3 = 300;
@@ -18,7 +18,7 @@ public class A {
     private void test400() {
         System.out.println("test400~");
     }
-    public void cal() {
-        System.out.println("A类的cal方法");
-    }
+//    public void cal() {
+//        System.out.println("A类的cal方法");
+//    }
 }

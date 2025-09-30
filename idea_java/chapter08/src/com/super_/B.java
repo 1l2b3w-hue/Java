@@ -8,6 +8,12 @@ public class B extends A{
 //        + " " + super.n4); 无法访问私有属性n4
         System.out.println(super.n1 + " " + super.n2 + " " + super.n3 + " " );
     }
+//    super 访问上级类属性
+    public void test() {
+//        直接查找父类A中是否含有n1属性，有，返回A中的n1，没有找Base
+        System.out.println("super.n1 = " + super.n1);
+        super.cal();
+    }
 
 //    super 访问父类方法(不能访问父类私有方法)
     public void hi2() {
