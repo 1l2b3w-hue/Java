@@ -15,8 +15,8 @@ public class Equals01 {
 //        Integer
         String st1 = new String("hello");
         String st2 = new String("hello");
-        System.out.println(st1 == st2); // false
-        System.out.println(st1.equals(st2)); // true
+        System.out.println(st1 == st2);
+        System.out.println(st1.equals(st2));
 
     }
 
