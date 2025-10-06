@@ -27,7 +27,7 @@ public class House {
         this.number = number;
         this.address = address;
         this.monthRent = monthRent;
-        this.status = status;
+        setStatus(status);
     }
 
     public String getName() {
@@ -67,7 +67,13 @@ public class House {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        if(status.equals("未出租") || status.equals("已出租")){
+            this.status = status;
+            return;
+        }
+        System.out.println("房屋状态输入错误，赋默认值：未出租，请及时修改！");
+        this.status = "未出租";
+
     }
 
     public int getRef() {
