@@ -1,6 +1,7 @@
 package com.final_;
 
-public class FinalExercise01 {
+
+public class FinalExercise01  {
     public static void main(String[] args) {
         Circle circle = new Circle(5);
         circle.area();
