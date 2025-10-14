@@ -3,6 +3,7 @@ package com.date_;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class LocalDate01 {
     public static void main(String[] args) {
@@ -20,5 +21,20 @@ public class LocalDate01 {
         LocalDate date1 = LocalDate.now(); // 日
 
         LocalTime date2 = LocalTime.now(); // 时间
+
+
+//        格式化
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String format = dateTimeFormatter.format(date);
+        System.out.println(format);
+
+//        提供 plus 和 minus 方法来对当前时间进行加减
+        LocalDateTime localDateTime = date.plusDays(890); // 增加890
+        String format1 = dateTimeFormatter.format(localDateTime);
+        System.out.println(format1);
+
+        LocalDateTime localDateTime1 = date.minusMinutes(3456); // 查看3456分钟前的时间
+        String format2 = dateTimeFormatter.format(localDateTime1);
+        System.out.println(format2);
     }
 }
