@@ -2,12 +2,14 @@ package com.directory_;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.InputStream;
+import java.io.*;
 
 public class Directory_ {
     public static void main(String[] args) {
 //        InputStream
+//        Reader
+//        InputStreamReader
+//        FileWriter
     }
 
     @Test
