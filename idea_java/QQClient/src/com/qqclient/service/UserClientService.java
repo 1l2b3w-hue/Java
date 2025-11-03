@@ -1,5 +1,6 @@
 package com.qqclient.service;
 
+import com.qqclient.utils.Utility;
 import com.qqcommon.Message;
 import com.qqcommon.MessageType;
 import com.qqcommon.User;
@@ -63,4 +64,50 @@ public class UserClientService {
         }
         return b;
     }
+
+
+//    编写一个方法，用于实现向服务端请求一个在线用户信息列表
+    public void onlineFriendsList() {
+        // 创建一个 消息 对象
+        Message message = new Message();
+        message.setMsgType(MessageType.MESSAGE_GET_ONLINE_FRIENDS); // 设置信息类型
+        message.setSender(user.getUserId()); // 设置发送方
+
+        try {
+            // 准备发送信息，获取与之关联的 socket 对象
+            // 直接属性获取 (只能处理单链接，即一个客户端一个连接)
+//            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+
+            // 通过线程的 userId 获取线程 (处理一个客户端多个连接问题，精准找到 所需socket 对象)
+            ClientConnectServerThread clientConnectServerThread =
+                    ManageClientConnectServerThread.getClientConnectServerThread(user.getUserId());
+            // 获取当前线程的 socket 对象
+            Socket socket = clientConnectServerThread.getSocket();
+            // 获取 一个与socket 关联的对象输出流
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+//     编写一个方法，退出客户端，并向向服务端发送退出系统 的 message
+    public void logout() {
+        Message message = new Message();
+        message.setSender(user.getUserId());
+        message.setMsgType(MessageType.MESSAGE_CLIENT_EXIT);
+
+        // 获取关联的socket
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(message);
+            System.out.println(user.getUserId() + " 退出系统");
+            System.exit(0);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }

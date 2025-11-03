@@ -1,6 +1,7 @@
 package com.qqclient.service;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * 用于管理客户端连接到服务器端的线程类
