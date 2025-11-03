@@ -52,6 +52,7 @@ public class QQServer {
     public QQServer(){
 //      监听的端口号可以写在配置文件中
         try {
+            new SendNewsToAllService().start();
             System.out.println("服务端在 9999 号端口进行监听...");
             ss = new ServerSocket(9999);
             while(true) {
