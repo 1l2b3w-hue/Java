@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+    <!-- 默认配置（若不指定命名配置则使用此配置） -->
+    <default-config>
+        <!-- 数据库驱动（使用 8.0 系列的新驱动类） -->
+        <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+        <!-- 数据库连接地址（替换为你的数据库名，如 hsp_db02） -->
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/hsp_db02</property>
+        <!-- 数据库用户名 -->
+        <property name="user">root</property>
+        <!-- 数据库密码 -->
+        <property name="password">lbw</property>
+        <!-- 每次增长的连接数 -->
+        <property name="acquireIncrement">5</property>
+        <!-- 初始化连接数 -->
+        <property name="initialPoolSize">5</property>
+        <!-- 最小连接数 -->
+        <property name="minPoolSize">5</property>
+        <!-- 最大连接数 -->
+        <property name="maxPoolSize">20</property>
+        <!-- 最大空闲时间（秒，0 表示永不回收） -->
+        <property name="maxIdleTime">30</property>
+    </default-config>
+
+    <!-- 命名配置（可自定义名称，） -->
+    <named-config name="mysql">
+        <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/hsp_db02?serverTimezone=Asia/Shanghai&amp;useSSL=false</property>
+        <property name="user">root</property>
+        <property name="password">lbw</property>
+        <property name="initialPoolSize">10</property>
+        <property name="acquireIncrement">5</property>
+        <property name="minPoolSize">5</property>
+        <property name="maxPoolSize">30</property>
+        <!-- 可连接的最多的命令对象数 -->
+        <property name="maxStatements">5</property>
+        <!-- 每个连接对象可连接的最多的命令对象数 -->
+        <property name="maxStatementsPerConnection">2</property>
+    </named-config>
+</c3p0-config>
