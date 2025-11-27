@@ -17,4 +17,32 @@ public class DingTableService {
         return dingTables;
     }
 
+//    public boolean reserveDingTable(int tableId, String name,String phone) {
+//        String sql = "select state from dingtable where id = ?";
+//        String o = (String)dingTableDAO.queryScalar(sql, tableId);
+//        if(!(o.equals("空"))) {
+//            return false;
+//        }
+//        sql = "update dingtable set orderName = ?,orderTel = ?,state = ? where id =?";
+//        int affected = dingTableDAO.update(sql, name, phone, "已预定", tableId);
+//        if(affected > 0) {
+//            return true;
+//        }
+//        return false;
+//    }
+    // 根据给定 id 查找对应餐桌对象，如果为 null 则表明该餐桌不存在
+    public DingTable getDingTableById(int id) {
+        String sql = "select * from dingTable where id = ?";
+        return dingTableDAO.selectSingle(sql,DingTable.class,id);
+    }
+
+    // 如果餐桌可以预定 ，调用方法，对餐桌状态进行更新
+    public boolean orderDingTable(int id,String orderName,String orderTel) {
+        String sql = "update dingTable set state = ?,orderName = ?,orderTel = ? where id = ?";
+        int affected = dingTableDAO.update(sql, "已预定", orderName, orderTel, id);
+
+        return affected > 0;
+
+    }
+
 }

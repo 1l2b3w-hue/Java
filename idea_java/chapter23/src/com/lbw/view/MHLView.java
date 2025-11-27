@@ -1,8 +1,10 @@
 package com.lbw.view;
 
 import com.lbw.domain_.DingTable;
+import com.lbw.domain_.Dish;
 import com.lbw.domain_.Employee;
 import com.lbw.service.DingTableService;
+import com.lbw.service.DishService;
 import com.lbw.service.EmployeeService;
 import com.lbw.utils.Utility;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,7 @@ import java.util.List;
 public class MHLView {
     private EmployeeService employeeService = new EmployeeService();
     private DingTableService dingTableService = new DingTableService();
+    private DishService dishService = new DishService();
     public static void main(String[] args) {
         new MHLView().mainMenu();
     }
@@ -71,10 +74,11 @@ public class MHLView {
                     showTableState();
                     break;
                 case "2":
-                    System.out.println("预定餐桌");
+//                    reserveTable();
+                    orderDingTable();
                     break;
                 case "3":
-                    System.out.println("显示所有菜品");
+                    showDishes();
                     break;
                 case "4":
                     System.out.println("点餐服务");
@@ -105,4 +109,74 @@ public class MHLView {
         }
         System.out.println("========== 显示完毕 ==========");
     }
+
+//    public void reserveTable() {
+//        System.out.println("========== 预定餐桌 ==========");
+//        System.out.print("请选择要预定的餐桌编号(-1退出):");
+//        int tableId = Utility.readInt();
+//        if (tableId == -1) {
+//            System.out.println("========== 退出预定餐桌 ==========");
+//            return;
+//        }
+//        System.out.print("确认是否预定(Y/N):");
+//        String reserveType = (Utility.readConfirmSelection()) + "";
+//        if(reserveType.equals("N")) {
+//            System.out.println("========== 退出预定餐桌 ==========");
+//            return;
+//        }
+//        System.out.print("预定人名字:");
+//        String name = Utility.readString(32);
+//        System.out.print("预定人电话:");
+//        String phone = Utility.readString(32);
+//        if(dingTableService.reserveDingTable(tableId, name,phone)) {
+//            System.out.println("========== 预定成功 ==========");
+//        }else {
+//            System.out.println("餐桌已经预定/就餐状态");
+//            System.out.println("========== 预定失败 ==========");
+//        }
+//
+//    }
+    // 完成订座
+    public void orderDingTable() {
+        System.out.println("========== 预定餐桌 ==========");
+        System.out.print("请选择要预定的餐桌编号(-1退出):");
+        int tableId = Utility.readInt();
+        if (tableId == -1) {
+            System.out.println("========== 取消预定餐桌 ==========");
+            return;
+        }
+        char key = Utility.readConfirmSelection();
+        if(key == 'N') {
+            System.out.println("========== 取消预定餐桌 ==========");
+            return;
+        }
+        DingTable dingTable = dingTableService.getDingTableById(tableId);
+        if (dingTable == null) {
+            System.out.println("========== 预定餐桌不存在 ==========");
+            return;
+        }else if(!(dingTable.getState().equals("空"))) {
+            System.out.println("========== 预定餐桌已经被预定或者就餐中 ==========");
+            return;
+        }
+        System.out.print("预定人名字:");
+        String name = Utility.readString(32);
+        System.out.print("预定人电话:");
+        String phone = Utility.readString(32);
+        if(dingTableService.orderDingTable(tableId, name,phone)) {
+            System.out.println("========== 预定成功 ==========");
+        }else {
+            System.out.println("========== 预定失败 ==========");
+        }
+
+    }
+
+    public void showDishes() {
+        List<Dish> dishes = dishService.getDishes();
+        System.out.println("菜品编号\t\t菜品名\t\t类别\t\t价格");
+        for (Dish dish : dishes) {
+            System.out.println(dish.getId() + "\t\t\t" + dish.getDishName() + "\t\t" +
+                    dish.getCategory() + "\t\t" + dish.getPrice());
+        }
+    }
+
 }
