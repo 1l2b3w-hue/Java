@@ -12,4 +12,9 @@ public class DishService {
         String sql = "select * from dish";
         return dishDAO.selectMulLine(sql, Dish.class);
     }
+
+    // 根据 菜品id 获取 Dish 对象
+    public Dish getDishById(int dishId) {
+        return dishDAO.selectSingle("select * from dish where id = ?",Dish.class, dishId);
+    }
 }

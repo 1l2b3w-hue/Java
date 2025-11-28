@@ -45,4 +45,19 @@ public class DingTableService {
 
     }
 
+    // 更新餐桌状态
+    public boolean orderDingTable(int tableId,String state) {
+        int update = dingTableDAO.update("update dingTable set state = ? where id = ?", state, tableId);
+        return update > 0;
+
+    }
+
+    // 重置餐桌状态
+    public boolean resetDingTable(int tableId) {
+        int update = dingTableDAO.update("update dingTable set state = '空',orderName = '',orderTel = '' where id = ? ", tableId);
+        return update > 0;
+
+    }
+
+
 }

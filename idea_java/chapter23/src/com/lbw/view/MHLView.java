@@ -1,8 +1,7 @@
 package com.lbw.view;
 
-import com.lbw.domain_.DingTable;
-import com.lbw.domain_.Dish;
-import com.lbw.domain_.Employee;
+import com.lbw.domain_.*;
+import com.lbw.service.AccountService;
 import com.lbw.service.DingTableService;
 import com.lbw.service.DishService;
 import com.lbw.service.EmployeeService;
@@ -15,6 +14,7 @@ public class MHLView {
     private EmployeeService employeeService = new EmployeeService();
     private DingTableService dingTableService = new DingTableService();
     private DishService dishService = new DishService();
+    private AccountService accountService = new AccountService();
     public static void main(String[] args) {
         new MHLView().mainMenu();
     }
@@ -81,13 +81,13 @@ public class MHLView {
                     showDishes();
                     break;
                 case "4":
-                    System.out.println("点餐服务");
+                    orderService();
                     break;
                 case "5":
-                    System.out.println("查看账单");
+                    showAccount2();
                     break;
                 case "6":
-                    System.out.println("结账");
+                    payBill();
                     break;
                 case "9":
                     System.out.println("退出满汉楼");
@@ -145,6 +145,7 @@ public class MHLView {
             System.out.println("========== 取消预定餐桌 ==========");
             return;
         }
+        System.out.print("确认是否预定(Y/N):");
         char key = Utility.readConfirmSelection();
         if(key == 'N') {
             System.out.println("========== 取消预定餐桌 ==========");
@@ -169,7 +170,7 @@ public class MHLView {
         }
 
     }
-
+    // 显示所有菜品
     public void showDishes() {
         List<Dish> dishes = dishService.getDishes();
         System.out.println("菜品编号\t\t菜品名\t\t类别\t\t价格");
@@ -179,4 +180,100 @@ public class MHLView {
         }
     }
 
+    // 点餐服务
+    public void orderService() {
+        System.out.println("========== 点餐服务 ==========");
+        System.out.print("请选择点餐的桌号(-1退出):");
+        int tableId = Utility.readInt();
+        if (tableId == -1) {
+            System.out.println("========== 退出点餐 ==========");
+            return;
+        }
+        if (dingTableService.getDingTableById(tableId) == null) {
+            System.out.println("========== 餐桌不存在 ==========");
+            return;
+        }
+        System.out.print("请选择菜品编号(-1退出):");
+        int dishId = Utility.readInt();
+        if (dishId == -1) {
+            System.out.println("========== 退出点餐 ==========");
+            return;
+        }
+        if (dishService.getDishById(dishId) == null) {
+            System.out.println("========== 菜品不存在 ==========");
+            return;
+        }
+        System.out.print("请选择菜品数量(-1退出):");
+        int dishNum = Utility.readInt();
+        if (dishNum == -1) {
+            System.out.println("========== 退出点餐 ==========");
+            return;
+        }
+        System.out.print("确认是否点这个菜(Y/N):");
+        char key = Utility.readConfirmSelection();
+        if(key == 'N') {
+            System.out.println("========== 退出点餐 ==========");
+            return;
+        }
+        if(accountService.addAccount(dishId,dishNum,tableId)) {
+            System.out.println("========== 点餐成功 ==========");
+        }
+        else {
+            System.out.println("========== 点餐失败 ==========");
+        }
+    }
+
+    public void showAccount() {
+        System.out.println("编号\t\t菜品号\t\t菜品量\t\t金额\t\t桌号\t\t日期\t\t\t\t\t\t\t状态");
+        List<Account> accountList = accountService.getAccountList();
+        for (Account account : accountList) {
+            System.out.println(account);
+        }
+
+        System.out.println("========== 显示完毕 ==========");
+    }
+    public void showAccount2() {
+        System.out.println("编号\t\t菜品号\t\t菜品量\t\t金额\t\t桌号\t\t日期\t\t\t\t\t\t\t状态\t\t菜品名");
+        List<MultiTable> multiTableList = accountService.getMultiTableList();
+        for(MultiTable multiTable : multiTableList) {
+            System.out.println(multiTable);
+        }
+        System.out.println("========== 显示完毕 ==========");
+    }
+
+    public void payBill() {
+        System.out.println("========== 结账服务 ==========");
+        System.out.print("请选择要结账的餐桌编号(-1退出):");
+        int tableId = Utility.readInt();
+        if (tableId == -1) {
+            System.out.println("========== 退出结账 ==========");
+            return;
+        }
+        if(dingTableService.getDingTableById(tableId) == null) {
+            System.out.println("========== 要结账的餐桌不存在 ==========");
+            return;
+        }
+        if(!accountService.hasPayBill(tableId)) {
+            System.out.println("========== 要结账的餐桌不存在待结账账单 ==========");
+            return;
+        }
+        System.out.print("结账的方式(现金/支付宝/微信)回车表示退出:");
+        String payMethod = Utility.readString(20,"");
+        if("".equals(payMethod)) {
+            System.out.println("========== 退出结账 ==========");
+            return;
+        }
+        System.out.print("确认是否结账(Y/N):");
+        char key = Utility.readConfirmSelection();
+        if(key == 'Y') {
+            if(accountService.payBill(tableId,payMethod)) {
+                System.out.println("========== 结账完成 ==========");
+            }
+            else {
+                System.out.println("========== 结账失败 ==========");
+            }
+        }else {
+            System.out.println("========== 退出结账 ==========");
+        }
+    }
 }
