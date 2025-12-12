@@ -1,0 +1,28 @@
+# 定义对象 和 Map 集合
+#user:
+#  name: 张三
+#  age: 18
+#  gender: man
+
+# 定义数组/list/set
+#list:
+#  - 20
+#  - 30
+#  - 40
+
+spring:
+  application:
+    name: mybatis-quickstart
+  # 配置数据库连接
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/web01
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: lbw
+
+mybatis:
+  #配置 Mybatis 日志输出信息
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
