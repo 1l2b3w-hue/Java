@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Emp {
     private Integer id;
-    private String userName;
+    private String username;
     private String password;
     private String name;
     private Integer gender;
@@ -25,4 +26,7 @@ public class Emp {
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
     private String deptName;
+
+    // 增加一个集合，用来接受前端发送到新增员工参数
+    private List<EmpExpr> exprList;
 }

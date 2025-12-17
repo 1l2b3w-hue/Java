@@ -2,8 +2,10 @@ package com.itlbw.mapper;
 
 
 import com.itlbw.pojo.Emp;
+import com.itlbw.pojo.EmpExpr;
 import com.itlbw.pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,4 +32,12 @@ public interface EmpMapper {
 
 //    优化
     List<Emp> list(EmpQueryParam param);
+
+    /**
+     * 添加员工基本信息
+     * @param emp
+     */
+    @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
+    void insertBasic(Emp emp);
+
 }
