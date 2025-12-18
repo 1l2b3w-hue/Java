@@ -40,4 +40,8 @@ public interface EmpMapper {
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insertBasic(Emp emp);
 
+    /**
+     * 根据 id 批量删除员工
+     */
+    void delete(List<Integer> ids);
 }

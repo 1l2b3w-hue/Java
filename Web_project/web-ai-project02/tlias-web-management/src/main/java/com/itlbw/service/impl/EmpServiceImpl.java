@@ -63,6 +63,16 @@ public class EmpServiceImpl implements EmpService {
         }
     }
 
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public void delete(List<Integer> ids) {
+        // 批量删除员工信息
+        empMapper.delete(ids);
+
+        // 批量删除员工工作经历
+        empExprMapper.delete(ids);
+    }
+
 
 //    @Override
 //    public PageResult<Emp> page(Integer start, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {

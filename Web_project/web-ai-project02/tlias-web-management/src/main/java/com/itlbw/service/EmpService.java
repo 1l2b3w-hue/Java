@@ -5,6 +5,7 @@ import com.itlbw.pojo.EmpQueryParam;
 import com.itlbw.pojo.PageResult;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 员工信息服务接口,包括工作经历
@@ -21,4 +22,6 @@ public interface EmpService {
 
     // 新增员工
     void add(Emp emp);
+
+    void delete(List<Integer> ids);
 }

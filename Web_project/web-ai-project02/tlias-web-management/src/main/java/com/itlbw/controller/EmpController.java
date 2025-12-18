@@ -11,6 +11,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/emps")
@@ -49,4 +52,27 @@ public class EmpController {
 
         return Result.success();
     }
+
+    /**
+     * 员工删除功能 --- 集合接收
+     */
+    @DeleteMapping
+    public Result delete(@RequestParam List<Integer> ids) {
+        log.info("删除员工id：" + ids);
+
+        empService.delete(ids);
+
+        return Result.success();
+    }
+
+    /**
+     * 员工删除功能 --- 数组接收
+     */
+//    @DeleteMapping
+//    public Result delete(Integer[] ids) {
+//        log.info("删除员工id：" + Arrays.toString(ids));
+//        return Result.success();
+//    }
+
+
 }

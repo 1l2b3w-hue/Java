@@ -26,3 +26,11 @@ logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
 
+
+# 配置阿里云 OSS
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: javaweb-ai-lbw
+    region: cn-beijing
+
