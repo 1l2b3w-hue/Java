@@ -46,7 +46,7 @@ public class EmpServiceImpl implements EmpService {
             empMapper.insertBasic(emp);
 
             // 主动抛错
-            int i = 1/0;
+//            int i = 1/0;
 
 
             // 调用 EmpExprMapper 的方法完成添加员工工作经历
