@@ -42,6 +42,9 @@
 
             ORDER BY emp.update_time DESC
     </select>
+    <select id="selectAll" resultType="com.itlbw.pojo.Emp">
+        SELECT * FROM emp
+    </select>
 
     <insert id="insertBasic" useGeneratedKeys = "true" keyColumn = "id"  keyProperty = "id">
         INSERT INTO emp

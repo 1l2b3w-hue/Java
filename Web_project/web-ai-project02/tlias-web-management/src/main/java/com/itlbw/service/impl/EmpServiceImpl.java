@@ -73,6 +73,15 @@ public class EmpServiceImpl implements EmpService {
         empExprMapper.delete(ids);
     }
 
+    /**
+     * 查询所有员工信息
+     */
+    @Override
+    public List<Emp> list() {
+
+        return empMapper.selectAll();
+    }
+
 
 //    @Override
 //    public PageResult<Emp> page(Integer start, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {

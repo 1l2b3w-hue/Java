@@ -44,4 +44,9 @@ public interface EmpMapper {
      * 根据 id 批量删除员工
      */
     void delete(List<Integer> ids);
+
+    /**
+     * 查询所有员工信息
+     */
+    List<Emp> selectAll();
 }

@@ -13,4 +13,21 @@
     <select id="findAll" resultType="com.itlbw.pojo.Clazz">
         select * from clazz
     </select>
+
+    <select id="selectNumber" resultType="java.lang.Integer">
+        select count(*) from clazz
+    </select>
+<!--    存在问题 ：查询出结课并不在该范围内的班级-->
+    <select id="list" resultType="com.itlbw.pojo.Clazz">
+        SELECT clazz.*,emp.name as masterName FROM clazz LEFT JOIN emp ON clazz.`master_id` = emp.id
+        <where>
+            <if test="name != null">
+                 emp.name like concat('%',#{name},'%') and
+            </if>
+            <if test=" begin != null and end != null">
+                end_date between #{begin} and #{end}
+            </if>
+        </where>
+
+    </select>
 </mapper>

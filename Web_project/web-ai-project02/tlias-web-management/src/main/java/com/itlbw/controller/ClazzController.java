@@ -2,6 +2,8 @@ package com.itlbw.controller;
 
 
 import com.itlbw.pojo.Clazz;
+import com.itlbw.pojo.ClazzQueryParam;
+import com.itlbw.pojo.PageResult;
 import com.itlbw.pojo.Result;
 import com.itlbw.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
@@ -44,10 +46,24 @@ public class ClazzController {
     /**
      * 查询所有班级信息
      */
-    @GetMapping()
+    @GetMapping("/list")
     public Result findAll() {
         Clazz[] clazzs = clazzService.findAll();
 
         return Result.success(clazzs);
     }
+
+    /**
+     * 班级列表查询
+     */
+    @GetMapping
+    public Result list(ClazzQueryParam clazzQueryParam) {
+        log.info("分页查询班级列表..." + clazzQueryParam);
+
+        PageResult<Clazz> pageResult = clazzService.page(clazzQueryParam);
+
+
+        return Result.success(pageResult);
+    }
+
 }

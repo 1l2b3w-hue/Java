@@ -24,4 +24,7 @@ public interface EmpService {
     void add(Emp emp);
 
     void delete(List<Integer> ids);
+
+    // 查询所有员工
+    List<Emp> list();
 }
